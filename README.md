@@ -43,7 +43,7 @@
 | 컬럼명 | 데이터 타입 | 제약조건 | Nullable | 설명 |
 | --- | --- | --- | --- | --- |
 | `id` | BIGINT | PRIMARY KEY, AUTO_INCREMENT |  NOT NULL | 고유 ID |
-| `playlist_id` | BIGINT | PRIMARY KEY, AUTO_INCREMENT |  NOT NULL | 플레이리스트 트랙 고유 ID |
+| `playlist_id` | BIGINT | FOREIGN KEY REFERENCES playlist(id) |  NOT NULL | 플레이리스트 트랙 고유 ID |
 | `track_id`  | BIGINT | FOREIGN KEY REFERENCES track(id) |  NOT NULL | 트랙 고유 ID |
 | `created_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP |  NOT NULL | 생성 시각 |
 | `modified_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | NULL | 수정 시각 |
