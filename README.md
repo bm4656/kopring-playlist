@@ -2,8 +2,15 @@
 >
 > 인프런 워밍업 3기 미니 프로젝트
 >
+<img width="703" alt="image" src="https://github.com/user-attachments/assets/3de75929-9e1b-4b87-a4d2-114083f9dba8" />
 
-<img src='https://github.com/user-attachments/assets/9f05bbe2-c5a0-4e8e-9375-69e75efa139c' width='350' height='250' />
+### ⭐️ 목차
+[🍀 테이블 설계](#-테이블-설계)
+
+[📋 API 설계](#-api-설계)
+
+
+<br/>
 
 
 ## 🍀 테이블 설계
@@ -17,7 +24,7 @@
 | `password`  | VARCHAR(255) |  |  NOT NULL | 사용자 패스워드 |
 | `status` | ENUM(’Y’, ‘N’) | DEFAULT ‘Y’ |  NOT NULL | 상태(정상/삭제) |
 | `created_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP |  NOT NULL | 생성 시각 |
-| `modified_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | NULL | 수정 시각 |
+| `modified_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | NOT NULL  | 수정 시각 |
 
 - Member → Playlist (1:N) 
 
@@ -34,7 +41,7 @@
 | `title` | VARCHAR(255) |  |  NOT NULL | 노래 제목 |
 | `duration`  | VARCHAR(255) |  |  NOT NULL | 음악 길이 |
 | `created_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP |  NOT NULL | 생성 시각 |
-| `modified_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | NULL | 수정 시각 |
+| `modified_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | NOT NULL  | 수정 시각 |
 
 
 
@@ -46,7 +53,7 @@
 | `playlist_id` | BIGINT | FOREIGN KEY REFERENCES playlist(id) |  NOT NULL | 플레이리스트 트랙 고유 ID |
 | `track_id`  | BIGINT | FOREIGN KEY REFERENCES track(id) |  NOT NULL | 트랙 고유 ID |
 | `created_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP |  NOT NULL | 생성 시각 |
-| `modified_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | NULL | 수정 시각 |
+| `modified_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | NOT NULL  | 수정 시각 |
 
 
 
@@ -59,11 +66,17 @@
 | `title`  | VARCHAR(255) |  |  NOT NULL | 플레이리스트 제목 |
 | `playlist_image`  | VARCHAR(255) |  | NULL | 플레이리스트 커버 이미지 |
 | `created_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP |  NOT NULL | 생성 시각 |
-| `modified_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | NULL | 수정 시각 |
+| `modified_date` | DATETIME | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | NOT NULL  | 수정 시각 |
 
 - Playlist <-> Track (N:M) 
 
 - Playlist에 여러 track_id가 물리니 해당 테이블에 같은 id로 여러 행이 반복되었습니다. 따라서 중간 테이블 Track_Playlist를 만들었습니다.
 
 
+<br/>
+
+## 📋 API 설계
+<img width="703" alt="image" src="https://github.com/user-attachments/assets/392660a3-6219-468c-a634-54b29bd367c7" />
+
+- Postman Documatation : [링크](https://documenter.getpostman.com/view/25038822/2sAYdoG7wm)
 
