@@ -19,7 +19,6 @@
 | 컬럼명 | 데이터 타입 | 제약조건 | Nullable | 설명 |
 | --- | --- | --- | --- | --- |
 | `id` | BIGINT | PRIMARY KEY, AUTO_INCREMENT |  NOT NULL | 사용자 고유 ID |
-| `fake_id`  | UUID | UNIQUE |  NOT NULL | 외부 노출 고유 ID |
 | `username` | VARCHAR(64) | UNIQUE |  NOT NULL | 사용자 이름 |
 | `password`  | VARCHAR(255) |  |  NOT NULL | 사용자 패스워드 |
 | `status` | ENUM(’Y’, ‘N’) | DEFAULT ‘Y’ |  NOT NULL | 상태(정상/삭제) |
