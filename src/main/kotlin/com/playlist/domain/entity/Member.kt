@@ -1,13 +1,13 @@
-package com.example.playlist.domain.entity
+package com.playlist.domain.entity
 
-import com.example.playlist.domain.constants.YesNo
+import com.playlist.domain.constants.YesNo
 import jakarta.persistence.*
 
 @Entity
 class Member(
     username: String,
     password: String,
-):BaseEntity() {
+): com.playlist.domain.entity.BaseEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +18,6 @@ class Member(
 
     var password: String = password
 
-    var status: YesNo = YesNo.Y
+    var status: com.playlist.domain.constants.YesNo = com.playlist.domain.constants.YesNo.Y
 
 }

@@ -1,7 +1,6 @@
-package com.example.playlist.presentation.service
+package com.playlist.presentation.service
 
-import com.example.playlist.presentation.dto.TrackDTO
-import com.example.playlist.presentation.repository.PresentationRepository
+import com.playlist.presentation.repository.PresentationRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -11,10 +10,10 @@ class PresentationService(
 ) {
 
     @Transactional(readOnly = true)
-    fun getTracks(): List<TrackDTO> {
+    fun getTracks(): List<com.playlist.presentation.dto.TrackDTO> {
         val tracks = presentationRepository.getTracks()
 
-        return tracks.map { TrackDTO(it) }
+        return tracks.map { com.playlist.presentation.dto.TrackDTO(it) }
     }
 
 }

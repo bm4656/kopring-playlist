@@ -1,8 +1,5 @@
-package com.example.playlist.presentation.controller
+package com.playlist.presentation.controller
 
-import com.example.playlist.presentation.dto.TrackDTO
-import com.example.playlist.presentation.repository.PresentationRepository
-import com.example.playlist.presentation.service.PresentationService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -10,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api")
 class PresentationController(
-    private val presentationService: PresentationService
+    private val presentationService: com.playlist.presentation.service.PresentationService
 ) {
 
     @GetMapping("/test")
@@ -19,7 +16,7 @@ class PresentationController(
     }
 
     @GetMapping("/tracks")
-    fun getTracks(): List<TrackDTO> {
+    fun getTracks(): List<com.playlist.presentation.dto.TrackDTO> {
         return presentationService.getTracks()
     }
 }

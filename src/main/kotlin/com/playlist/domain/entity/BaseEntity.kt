@@ -1,4 +1,4 @@
-package com.example.playlist.domain.entity
+package com.playlist.domain.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.MappedSuperclass

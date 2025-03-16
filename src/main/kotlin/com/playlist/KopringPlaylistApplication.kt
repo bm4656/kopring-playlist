@@ -1,4 +1,4 @@
-package com.example.playlist
+package com.playlist
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class KopringPlaylistApplication
 
 fun main(args: Array<String>) {
-	runApplication<KopringPlaylistApplication>(*args)
+	runApplication<com.playlist.KopringPlaylistApplication>(*args)
 }

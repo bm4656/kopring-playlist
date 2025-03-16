@@ -1,4 +1,4 @@
-package com.example.playlist.domain.entity
+package com.playlist.domain.entity
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import jakarta.persistence.*
@@ -9,7 +9,7 @@ class Track(
     artist: String,
     duration: String,
     imageUrl: String? = null
-):BaseEntity() {
+): com.playlist.domain.entity.BaseEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "track_id")
