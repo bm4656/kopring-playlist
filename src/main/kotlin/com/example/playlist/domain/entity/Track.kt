@@ -1,5 +1,6 @@
 package com.example.playlist.domain.entity
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import jakarta.persistence.*
 
 @Entity
@@ -7,6 +8,7 @@ class Track(
     title: String,
     artist: String,
     duration: String,
+    imageUrl: String? = null
 ):BaseEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,4 +20,7 @@ class Track(
     var artist: String = artist
 
     var duration: String = duration
+
+    @JacksonXmlProperty(localName = "image")
+    var imageUrl: String? = null
 }
