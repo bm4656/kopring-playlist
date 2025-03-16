@@ -1,4 +1,4 @@
-package com.example.kopring_playlist
+package com.example.playlist
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
