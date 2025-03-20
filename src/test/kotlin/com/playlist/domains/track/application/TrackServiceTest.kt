@@ -1,7 +1,7 @@
-package com.playlist.presentation.service
+package com.playlist.domains.track.application
 
 import com.playlist.domains.track.domain.Track
-import com.playlist.presentation.repository.PresentationRepository
+import com.playlist.domains.track.domain.TrackRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.BeforeEach
@@ -13,14 +13,13 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.jupiter.MockitoExtension
 
-
 @ExtendWith(MockitoExtension::class)
-class PresentationServiceTest {
+class TrackServiceTest {
     @InjectMocks
-    lateinit var presentationService: PresentationService
+    lateinit var trackService: TrackService
 
     @Mock
-    lateinit var presentationRepository: PresentationRepository
+    lateinit var trackRepository: TrackRepository
 
     val DATA_SIZE = 5
     val tracks = mutableListOf<Track>()
@@ -34,15 +33,14 @@ class PresentationServiceTest {
         }
     }
 
-
     @Test
     @DisplayName("음원 전체 목록이 조회된다.")
     fun testGetTracks() {
         // given
-        Mockito.`when`(presentationRepository.getTracks()).thenReturn(tracks)
+        Mockito.`when`(trackRepository.findAll()).thenReturn(tracks)
 
         // when
-        val result = presentationService.getTracks()
+        val result = trackService.getTracks()
 
         // then
         assertThat(result).hasSize(DATA_SIZE)
@@ -57,10 +55,10 @@ class PresentationServiceTest {
     @DisplayName("음원 없다면 빈 배열을 반환한다.")
     fun testGetTracksEmpty() {
         // given
-        Mockito.`when`(presentationRepository.getTracks()).thenReturn(emptyList())
+        Mockito.`when`(trackRepository.findAll()).thenReturn(emptyList())
 
         // when
-        val result = presentationRepository.getTracks()
+        val result = trackService.getTracks()
 
         // then
         assertThat(result).isEmpty()
@@ -71,11 +69,11 @@ class PresentationServiceTest {
     @DisplayName("음원 조회 중 예외가 발생하면 처리된다.")
     fun testGetTracksExceptionHandling() {
         // given
-        Mockito.`when`(presentationRepository.getTracks()).thenThrow(RuntimeException("조회 중 오류가 발생했습니다."))
+        Mockito.`when`(trackRepository.findAll()).thenThrow(RuntimeException("조회 중 오류가 발생했습니다."))
 
         // when & then
         assertThrows(RuntimeException::class.java) {
-            presentationService.getTracks()
+            trackService.getTracks()
         }
     }
 }
