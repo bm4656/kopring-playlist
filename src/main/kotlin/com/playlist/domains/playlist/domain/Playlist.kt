@@ -24,6 +24,11 @@ class Playlist(
 
     var playlistImage: String = playlistImage
 
-    @OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY, cascade = [CascadeType.ALL], orphanRemoval = true)
     var trackPlaylists: MutableList<TrackPlaylist> = mutableListOf()
+
+    fun addTrackPlaylist(trackPlaylist: TrackPlaylist) {
+        this.trackPlaylists.add(trackPlaylist)
+        trackPlaylist.playlist = this
+    }
 }
