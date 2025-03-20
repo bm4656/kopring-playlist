@@ -26,7 +26,7 @@ class PlaylistService(
     }
 
     fun getPlaylist(playlistId: Long): Playlist {
-        return playlistRepository.findById(playlistId)
+        return playlistRepository.findByIdWithDetails(playlistId)
             .orElseThrow { throw BadRequestCustomException("해당 플레이리스트가 존재하지 않습니다.") }
     }
 }
