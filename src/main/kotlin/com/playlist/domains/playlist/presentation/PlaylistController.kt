@@ -32,4 +32,14 @@ class PlaylistController(
                 tracks = playlist.trackPlaylists.map { it.track }
             ))
     }
+
+    @PatchMapping("/{id}")
+    fun updatePlaylist(
+        @PathVariable id: Long,
+        @RequestBody request: CreatePlaylistRequest
+    ): ResponseEntity<CommonResponse<String>> {
+        playlistService.updatePlaylist(id, request)
+
+        return ApiResponse.successUpdate()
+    }
 }
