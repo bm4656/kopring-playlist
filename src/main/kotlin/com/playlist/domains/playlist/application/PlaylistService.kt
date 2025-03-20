@@ -16,6 +16,19 @@ class PlaylistService(
     private val memberRepository: MemberRepository,
     private val trackRepository: TrackRepository
 ) {
+    @Transactional(readOnly = true)
+    fun getPlaylists(): List<Playlist> {
+        return playlistRepository.findAllWithDetails()
+    }
+
+    @Transactional
+    fun getPlaylistsByUserId(userId: Long): List<Playlist> {
+        val member = memberRepository.findById(userId)
+            .orElseThrow { throw BadRequestCustomException("해당 멤버가 존재하지 않습니다.") }
+
+        return playlistRepository.findByHostWithDetails(member)
+    }
+
     @Transactional
     fun createPlaylist(request: CreatePlaylistRequest): Playlist {
         val host = memberRepository.findById(request.hostId)

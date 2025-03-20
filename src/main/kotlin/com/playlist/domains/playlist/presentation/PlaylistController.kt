@@ -6,6 +6,7 @@ import com.playlist.commons.config.response.CommonResponse
 import com.playlist.domains.playlist.application.PlaylistService
 import com.playlist.domains.playlist.application.dto.CreatePlaylistRequest
 import com.playlist.domains.playlist.application.dto.FindPlaylistResponse
+import com.playlist.domains.playlist.application.dto.FindPlaylistsResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -14,10 +15,34 @@ import org.springframework.web.bind.annotation.*
 class PlaylistController(
     private val playlistService: PlaylistService
 ) {
+    @GetMapping
+    fun getPlaylists(): ApiResponseEntity<Map<String, List<FindPlaylistsResponse>>> {
+        val playlists = playlistService.getPlaylists()
+        val response = playlists.map {
+            FindPlaylistsResponse(it)
+        }
+
+        return ApiResponse.success(
+            data = mapOf("playlists" to response)
+        )
+    }
+
+    @GetMapping("/users/{userId}")
+    fun getPlaylistsByUser(@PathVariable userId: Long): ApiResponseEntity<Map<String, List<FindPlaylistsResponse>>> {
+        val playlists = playlistService.getPlaylistsByUserId(userId)
+        val response = playlists.map {
+            FindPlaylistsResponse(it)
+        }
+
+        return ApiResponse.success(
+            data = mapOf("playlists" to response)
+        )
+    }
+
+
     @PostMapping
     fun postPlaylist(@RequestBody request: CreatePlaylistRequest): ResponseEntity<CommonResponse<Map<String, String>>> {
         playlistService.createPlaylist(request)
-
         return ApiResponse.successCreate()
     }
 

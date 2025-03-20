@@ -31,4 +31,8 @@ class Playlist(
         this.trackPlaylists.add(trackPlaylist)
         trackPlaylist.playlist = this
     }
+
+    fun countTrackPlaylists(): Int {
+        return this.trackPlaylists.size
+    }
 }
