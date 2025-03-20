@@ -56,6 +56,14 @@ class PlaylistService(
         playlistRepository.save(playlist)
     }
 
+    @Transactional
+    fun deletePlaylist(id: Long) {
+        val playlist = playlistRepository.findById(id)
+            .orElseThrow { throw BadRequestCustomException("해당 플레이리스트가 존재하지 않습니다.") }
+
+        playlistRepository.delete(playlist)
+    }
+
     private fun addTrackPlaylists(request: CreatePlaylistRequest, playlist: Playlist) {
         // TODO TrackPlaylistRepository를 사용할지 고민 필요(서비스 분리)
         request.trackIds.forEach { trackId ->

@@ -42,4 +42,11 @@ class PlaylistController(
 
         return ApiResponse.successUpdate()
     }
+
+    @DeleteMapping("/{id}")
+    fun deletePlaylist(@PathVariable id: Long): ResponseEntity<CommonResponse<String>> {
+        playlistService.deletePlaylist(id)
+
+        return ApiResponse.successDelete()
+    }
 }
