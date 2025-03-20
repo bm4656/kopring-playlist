@@ -2,7 +2,7 @@ package com.playlist.domains.playlist.application
 
 import com.playlist.commons.exception.BadRequestCustomException
 import com.playlist.domains.member.domain.MemberRepository
-import com.playlist.domains.playlist.application.dto.CreatePlaylistRequest
+import com.playlist.domains.playlist.application.dto.PlaylistRequest
 import com.playlist.domains.playlist.domain.Playlist
 import com.playlist.domains.playlist.domain.PlaylistRepository
 import com.playlist.domains.track.domain.TrackRepository
@@ -30,7 +30,7 @@ class PlaylistService(
     }
 
     @Transactional
-    fun createPlaylist(request: CreatePlaylistRequest): Playlist {
+    fun createPlaylist(request: PlaylistRequest): Playlist {
         val host = memberRepository.findById(request.hostId)
             .orElseThrow { IllegalArgumentException("해당 멤버가 존재하지 않습니다.") }
 
@@ -54,7 +54,7 @@ class PlaylistService(
     }
 
     @Transactional
-    fun updatePlaylist(id: Long, request: CreatePlaylistRequest) {
+    fun updatePlaylist(id: Long, request: PlaylistRequest) {
         val playlist = playlistRepository.findById(id)
             .orElseThrow { throw BadRequestCustomException("해당 플레이리스트가 존재하지 않습니다.") }
 
@@ -77,7 +77,7 @@ class PlaylistService(
         playlistRepository.delete(playlist)
     }
 
-    private fun addTrackPlaylists(request: CreatePlaylistRequest, playlist: Playlist) {
+    private fun addTrackPlaylists(request: PlaylistRequest, playlist: Playlist) {
         // TODO TrackPlaylistRepository를 사용할지 고민 필요(서비스 분리)
         request.trackIds.forEach { trackId ->
             val track = trackRepository.findById(trackId)

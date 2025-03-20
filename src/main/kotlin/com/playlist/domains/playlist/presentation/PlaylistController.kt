@@ -4,9 +4,10 @@ import com.playlist.commons.config.response.ApiResponse
 import com.playlist.commons.config.response.ApiResponseEntity
 import com.playlist.commons.config.response.CommonResponse
 import com.playlist.domains.playlist.application.PlaylistService
-import com.playlist.domains.playlist.application.dto.CreatePlaylistRequest
 import com.playlist.domains.playlist.application.dto.FindPlaylistResponse
 import com.playlist.domains.playlist.application.dto.FindPlaylistsResponse
+import com.playlist.domains.playlist.application.dto.PlaylistRequest
+import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -41,9 +42,9 @@ class PlaylistController(
 
 
     @PostMapping
-    fun postPlaylist(@RequestBody request: CreatePlaylistRequest): ResponseEntity<CommonResponse<Map<String, String>>> {
+    fun postPlaylist(@RequestBody @Valid request: PlaylistRequest): ResponseEntity<CommonResponse<Map<String, String>>> {
         playlistService.createPlaylist(request)
-        return ApiResponse.successCreate()
+        return ApiResponse.successCreate("플레이리스트가 생성되었습니다.")
     }
 
     @GetMapping("/{id}")
@@ -64,15 +65,15 @@ class PlaylistController(
     @PatchMapping("/{id}")
     fun updatePlaylist(
         @PathVariable id: Long,
-        @RequestBody request: CreatePlaylistRequest
+        @RequestBody @Valid request: PlaylistRequest
     ): ApiResponseEntity<Map<String, String>> {
         playlistService.updatePlaylist(id, request)
-        return ApiResponse.successUpdate()
+        return ApiResponse.successUpdate("플레이리스트가 수정되었습니다.")
     }
 
     @DeleteMapping("/{id}")
     fun deletePlaylist(@PathVariable id: Long): ApiResponseEntity<Map<String, String>> {
         playlistService.deletePlaylist(id)
-        return ApiResponse.successDelete()
+        return ApiResponse.successDelete("플레이리스트가 삭제되었습니다.")
     }
 }

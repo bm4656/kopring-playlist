@@ -15,7 +15,7 @@ class CustomApiControllerAdvice {
     private val log = LoggerFactory.getLogger(CustomApiControllerAdvice::class.java)
 
     @ExceptionHandler(CustomException::class)
-    fun handleCustomException(e: CustomException): ApiResponseEntity<Map<String, String?>> {
+    fun handleException(e: CustomException): ApiResponseEntity<Map<String, String?>> {
         log.info(e.message, e)
 
         return ApiResponse.fail(

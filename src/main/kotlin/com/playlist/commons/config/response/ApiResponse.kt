@@ -32,16 +32,16 @@ class ApiResponse<T>(body: CommonResponse<T>, status: HttpStatus) : ResponseEnti
             return status(status).body(response)
         }
 
-        fun successCreate(): ApiResponseEntity<Map<String, String>> {
-            return success(data = mapOf("message" to "데이터가 저장되었습니다."))
+        fun successCreate(message: String? = null): ApiResponseEntity<Map<String, String>> {
+            return success(data = mapOf("message" to (message ?: "데이터가 저장되었습니다.")))
         }
 
-        fun successUpdate(): ApiResponseEntity<Map<String, String>> {
-            return success(data = mapOf("message" to "데이터가 수정되었습니다."))
+        fun successUpdate(message: String? = null): ApiResponseEntity<Map<String, String>> {
+            return success(data = mapOf("message" to (message ?: "데이터가 수정되었습니다.")))
         }
 
-        fun successDelete(): ApiResponseEntity<Map<String, String>> {
-            return success(data = mapOf("message" to "데이터가 삭제되었습니다."))
+        fun successDelete(message: String? = null): ApiResponseEntity<Map<String, String>> {
+            return success(data = mapOf("message" to (message ?: "데이터가 수정되었습니다.")))
         }
     }
 }

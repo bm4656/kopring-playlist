@@ -18,7 +18,7 @@ class MemberController(
     @PostMapping("/register")
     fun createMember(@RequestBody request: MemberRequest): ApiResponseEntity<Map<String, String>> {
         memberService.createMember(request)
-        return ApiResponse.successCreate()
+        return ApiResponse.successCreate("회원가입이 완료되었습니다.")
     }
 
     @PostMapping("/login")
