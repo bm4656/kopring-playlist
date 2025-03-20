@@ -1,6 +1,7 @@
-package com.playlist.domain.entity
+package com.playlist.domains.track.domain
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import com.playlist.commons.config.datetime.BaseEntity
 import jakarta.persistence.*
 
 @Entity
@@ -9,7 +10,7 @@ class Track(
     artist: String,
     duration: String,
     imageUrl: String? = null
-): com.playlist.domain.entity.BaseEntity() {
+) : BaseEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "track_id")

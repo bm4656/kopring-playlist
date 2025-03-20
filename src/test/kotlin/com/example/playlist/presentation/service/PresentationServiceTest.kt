@@ -1,6 +1,6 @@
 package com.playlist.presentation.service
 
-import com.playlist.domain.entity.Track
+import com.playlist.domains.track.domain.Track
 import com.playlist.presentation.repository.PresentationRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertThrows

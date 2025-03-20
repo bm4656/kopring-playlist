@@ -1,4 +1,4 @@
-package com.playlist.domain.entity
+package com.playlist.commons.config.datetime
 
 import jakarta.persistence.Column
 import jakarta.persistence.MappedSuperclass

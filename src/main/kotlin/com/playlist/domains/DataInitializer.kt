@@ -1,10 +1,13 @@
-package com.playlist.domain
+package com.playlist.domains
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.playlist.domain.entity.Member
-import com.playlist.domain.entity.Track
-import com.playlist.domain.repository.PlaylistRepository
+import com.playlist.domains.member.domain.Member
+import com.playlist.domains.member.domain.MemberRepository
+import com.playlist.domains.playlist.domain.PlaylistRepository
+import com.playlist.domains.track.domain.Track
+import com.playlist.domains.track.domain.TrackRepository
+import com.playlist.domains.track_playlist.domain.TrackPlaylistRepository
 import jakarta.annotation.PostConstruct
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
@@ -12,10 +15,10 @@ import org.springframework.stereotype.Component
 @Component()
 @Profile(value = ["default"])
 class DataInitializer(
-    private val memberRepository: com.playlist.domain.repository.MemberRepository,
-    private val trackRepository: com.playlist.domain.repository.TrackRepository,
+    private val memberRepository: MemberRepository,
+    private val trackRepository: TrackRepository,
     private val playlistRepository: PlaylistRepository,
-    private val trackPlaylistRepository: com.playlist.domain.repository.TrackPlaylistRepository
+    private val trackPlaylistRepository: TrackPlaylistRepository
 ) {
     @PostConstruct
     fun initializeData() {

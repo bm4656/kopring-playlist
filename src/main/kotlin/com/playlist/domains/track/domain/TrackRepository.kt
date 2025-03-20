@@ -1,6 +1,5 @@
-package com.playlist.domain.repository
+package com.playlist.domains.track.domain
 
-import com.playlist.domain.entity.Track
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface TrackRepository : JpaRepository<Track, Long>

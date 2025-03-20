@@ -1,6 +1,6 @@
-package com.playlist.presentation.dto
+package com.playlist.domains.track.application.dto
 
-import com.playlist.domain.entity.Track
+import com.playlist.domains.track.domain.Track
 
 class TrackDTO(
     val id: Long?,
