@@ -1,6 +1,7 @@
 package com.playlist.domains.playlist.presentation
 
 import com.playlist.commons.config.response.ApiResponse
+import com.playlist.commons.config.response.ApiResponseEntity
 import com.playlist.commons.config.response.CommonResponse
 import com.playlist.domains.playlist.application.PlaylistService
 import com.playlist.domains.playlist.application.dto.CreatePlaylistRequest
@@ -14,39 +15,39 @@ class PlaylistController(
     private val playlistService: PlaylistService
 ) {
     @PostMapping
-    fun postPlaylist(@RequestBody request: CreatePlaylistRequest): ResponseEntity<CommonResponse<String>> {
+    fun postPlaylist(@RequestBody request: CreatePlaylistRequest): ResponseEntity<CommonResponse<Map<String, String>>> {
         playlistService.createPlaylist(request)
 
         return ApiResponse.successCreate()
     }
 
     @GetMapping("/{id}")
-    fun getPlaylist(@PathVariable id: Long): ResponseEntity<CommonResponse<FindPlaylistResponse>> {
+    fun getPlaylist(@PathVariable id: Long): ApiResponseEntity<Map<String, FindPlaylistResponse>> {
         val playlist = playlistService.getPlaylist(id)
+        val response = FindPlaylistResponse(
+            title = playlist.title,
+            hostName = playlist.host.username,
+            playlistImage = playlist.playlistImage,
+            tracks = playlist.trackPlaylists.map { it.track }
+        )
 
         return ApiResponse.success(
-            data = FindPlaylistResponse(
-                title = playlist.title,
-                hostName = playlist.host.username,
-                playlistImage = playlist.playlistImage,
-                tracks = playlist.trackPlaylists.map { it.track }
-            ))
+            data = mapOf("playlist" to response)
+        )
     }
 
     @PatchMapping("/{id}")
     fun updatePlaylist(
         @PathVariable id: Long,
         @RequestBody request: CreatePlaylistRequest
-    ): ResponseEntity<CommonResponse<String>> {
+    ): ApiResponseEntity<Map<String, String>> {
         playlistService.updatePlaylist(id, request)
-
         return ApiResponse.successUpdate()
     }
 
     @DeleteMapping("/{id}")
-    fun deletePlaylist(@PathVariable id: Long): ResponseEntity<CommonResponse<String>> {
+    fun deletePlaylist(@PathVariable id: Long): ApiResponseEntity<Map<String, String>> {
         playlistService.deletePlaylist(id)
-
         return ApiResponse.successDelete()
     }
 }

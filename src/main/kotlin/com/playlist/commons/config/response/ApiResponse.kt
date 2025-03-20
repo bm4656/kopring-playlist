@@ -9,8 +9,12 @@ data class CommonResponse<T>(
     val data: T? = null
 )
 
+typealias ApiResponseEntity<T> = ResponseEntity<CommonResponse<T>>
+
 class ApiResponse<T>(body: CommonResponse<T>, status: HttpStatus) : ResponseEntity<CommonResponse<T>>(body, status) {
+
     companion object {
+
         fun <T> success(
             data: T? = null,
             code: String? = null
@@ -28,16 +32,16 @@ class ApiResponse<T>(body: CommonResponse<T>, status: HttpStatus) : ResponseEnti
             return status(status).body(response)
         }
 
-        fun successCreate(): ResponseEntity<CommonResponse<String>> {
-            return success(data = "데이터가 저장되었습니다.")
+        fun successCreate(): ApiResponseEntity<Map<String, String>> {
+            return success(data = mapOf("message" to "데이터가 저장되었습니다."))
         }
 
-        fun successUpdate(): ResponseEntity<CommonResponse<String>> {
-            return success(data = "데이터가 수정되었습니다.")
+        fun successUpdate(): ApiResponseEntity<Map<String, String>> {
+            return success(data = mapOf("message" to "데이터가 수정되었습니다."))
         }
 
-        fun successDelete(): ResponseEntity<CommonResponse<String>> {
-            return success(data = "데이터가 삭제되었습니다.")
+        fun successDelete(): ApiResponseEntity<Map<String, String>> {
+            return success(data = mapOf("message" to "데이터가 삭제되었습니다."))
         }
     }
 }

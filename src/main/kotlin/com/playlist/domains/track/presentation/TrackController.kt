@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/tracks")
 class TrackController(private val trackService: TrackService) {
     @GetMapping()
-    fun getTracks(): ResponseEntity<CommonResponse<List<TrackDTO>>> {
+    fun getTracks(): ResponseEntity<CommonResponse<Map<String, List<TrackDTO>>>> {
         val tracks = trackService.getTracks()
-        return ApiResponse.success(data = tracks)
+        return ApiResponse.success(data = mapOf("tracks" to tracks))
     }
 }
