@@ -2,7 +2,7 @@ package com.playlist.domains.track.application.dto
 
 import com.playlist.domains.track.domain.Track
 
-class TrackDTO(
+class FindTracksResponse(
     val id: Long?,
     val title: String,
     val artist: String,
