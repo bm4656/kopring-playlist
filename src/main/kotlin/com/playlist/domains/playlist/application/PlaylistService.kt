@@ -69,10 +69,12 @@ class PlaylistService(
         playlistRepository.save(playlist)
     }
 
+    // TODO 생성한 사람만 삭제 가능하도록 개선
     @Transactional
     fun deletePlaylist(id: Long) {
         val playlist = playlistRepository.findById(id)
             .orElseThrow { throw BadRequestCustomException("해당 플레이리스트가 존재하지 않습니다.") }
+
 
         playlistRepository.delete(playlist)
     }
